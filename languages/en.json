@@ -1,3 +1,10 @@
 {
-    "MODULE.hello": "hello"
+    "lib-changelogs.settings.alwaysShow.name": "DEBUG: Always show all changelogs",
+    "lib-changelogs.settings.alwaysShow.hint": "Always show all changelogs ignoring other settings",
+    "lib-changelogs.settings.warnLevel.name": "Changelog Filter",
+    "lib-changelogs.settings.warnLevel.hint": "Chose which level of filtering to use for changelogs to show only the ones of a certain importance",
+    "lib-changelogs.settings.warnLevel.all": "All",
+    "lib-changelogs.settings.warnLevel.major": "Major",
+    "lib-changelogs.settings.warnLevel.breaking": "Breaking",
+    "lib-changelogs.settings.warnLevel.critical": "Critical"
 }
