@@ -17,7 +17,7 @@ With four options
 
 Once you close the window you will not get notified again for the current version of the module
 
-![image](https://user-images.githubusercontent.com/1346839/127587189-7c311c30-8db9-4f1f-8a7d-b2702690a843.png)
+![image](https://user-images.githubusercontent.com/1346839/127656038-5172c5a0-d480-4522-b151-4ee28a451fa6.png)
 
 If you accidentaly closed a popup and want to check all your changelogs just click the show all changelogs button in Changelogs settings
 
