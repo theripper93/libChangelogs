@@ -164,6 +164,7 @@ Hooks.once('libChangelogsReady', function() {
 })
 
 Hooks.once('ready', function() {
+    if(!game.user.isGM) return
     libChangelogs.filterAndSave();
     libChangelogs.render(true,{},
         game.settings.get("lib-changelogs", "alwaysShow") ? "all" : ""
