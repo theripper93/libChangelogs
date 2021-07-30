@@ -74,3 +74,7 @@ Hooks.once('libChangelogsReady', function() {
     libChangelogs.register("yourmoduleid","THIS UPDATE BREAKS EVERYTHING","critical")
 })
 ```
+
+## Libraries
+
+This module uses https://github.com/showdownjs/showdown for markdown parsing
