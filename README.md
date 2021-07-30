@@ -49,7 +49,7 @@ Including a changelog is very simple, just call the `libChangelogs.register()` i
 ```js
 /**
  * @param {string} moduleId The package identifier, i.e. the 'id' field in your module/system/world's manifest.json
- * @param {string} html The html to be inserted into the changelog
+ * @param {string} markdown The text in markdown language to be inserted into the changelog
  * @param {string} warnLevel The level of warning to be displayed.
  * 
  *   The possible types are:
@@ -64,7 +64,7 @@ Including a changelog is very simple, just call the `libChangelogs.register()` i
  *         Minor bugfixes or changes that won't impact the user experience with your module (this is the default option).
  * **/
 
-    libChangelogs.register(moduleId, html, warnLevel="minor")
+    libChangelogs.register(moduleId, markdown, warnLevel="minor")
 ```
 
 # Example
