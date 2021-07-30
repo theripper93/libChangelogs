@@ -49,13 +49,13 @@ Including a changelog is very simple, just call the `libChangelogs.register()` i
 ```js
 /**
  * @param {string} moduleId The package identifier, i.e. the 'id' field in your module/system/world's manifest.json
- * @param {string} html The html to be inserted into the changelog module
+ * @param {string} html The html to be inserted into the changelog
  * @param {string} warnLevel The level of warning to be displayed.
  * 
  *   The possible types are:
  * 
  * - critical: 
- *         Only use for emergencies, something went wrong or the update requires immidiate action from the user.
+ *         Only use for emergencies, something went wrong or the update requires immidiate action from the user. This warning level CANNOT be disable by the user
  * - breaking:
  *         A breaking change that requires action from the user but will not cause issues if left unattended (eg. a new feature that requires some manual configuration changes).
  * - major:
