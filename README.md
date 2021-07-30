@@ -66,3 +66,11 @@ Including a changelog is very simple, just call the `libChangelogs.register()` i
 
     libChangelogs.register(moduleId, html, warnLevel="minor")
 ```
+
+# Example
+
+```js
+Hooks.once('libChangelogsReady', function() {
+    libChangelogs.register("yourmoduleid","THIS UPDATE BREAKS EVERYTHING","critical")
+})
+```
