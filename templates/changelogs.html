@@ -1,0 +1,58 @@
+<div class="changelogs">
+    {{#each changelogs.important}}
+    <div class="chl-module-important" data-name="{{moduleName}}">
+        <h2 class="chl-module-header">
+            <span class="chl-toggle-icon">
+                <i class="fa fa-caret-right" id="toggle-btn"></i>
+            </span>
+            {{moduleName}}
+        </h2>
+        <div class="chl-module-content hidden">
+            {{html}}
+        </div> 
+    </div>
+    {{/each}}
+
+    {{#each changelogs.breaking}}
+    <div class="chl-module-breaking" data-name="{{moduleName}}">
+        <h2 class="chl-module-header">
+            <span class="chl-toggle-icon">
+                <i class="fa fa-caret-right" id="toggle-btn"></i>
+            </span>
+            {{moduleName}}
+        </h2>
+        <div class="chl-module-content hidden">
+            {{html}}
+        </div> 
+    </div>
+    {{/each}}
+
+    {{#each changelogs.major}}
+    <div class="chl-module-major" data-name="{{moduleName}}">
+        <h2 class="chl-module-header">
+            <span class="chl-toggle-icon">
+                <i class="fa fa-caret-right" id="toggle-btn"></i>
+            </span>
+            {{moduleName}}
+        </h2>
+        <div class="chl-module-content hidden">
+            {{html}}
+        </div> 
+    </div>
+    {{/each}}
+
+    {{#each changelogs.minor}}
+    <div class="chl-module-minor" data-name="{{moduleName}}">
+        <h2 class="chl-module-header">
+            <span class="chl-toggle-icon">
+                <i class="fa fa-caret-right" id="toggle-btn"></i>
+            </span>
+            {{moduleName}}
+        </h2>
+        <div class="chl-module-content hidden">
+            {{html}}
+        </div> 
+    </div>
+    {{/each}}
+
+</div>

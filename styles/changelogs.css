@@ -1,0 +1,41 @@
+.changelogs{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.chl-module-content{
+    color: black;
+    overflow: hidden;
+    font-size: 12px;
+}
+
+.chl-module-content.hidden{
+    height: 0px;
+}
+
+.chl-module-minor{
+    color: rgb(0, 110, 255);
+    font-size:12px;
+}
+
+.chl-module-major{
+    color: rgb(143, 121, 0);
+    font-size:12px;
+}
+
+.chl-module-breaking{
+    color: red;
+    font-size:12px;
+}
+
+.chl-module-important{
+    color: blueviolet;
+    font-size:12px;
+}
+
+.chl-module-header{
+    font-size:14px;
+}
+
+.chl-toggle-icon{
+    font-size:14px;
+}

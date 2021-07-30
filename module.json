@@ -1,9 +1,9 @@
 {
-  "name": "libchangelogs",
+  "name": "lib-changelogs",
   "title": "Changelogs",
   "description": "Show changelogs of module in a non intrusive way.",
   "version": "This is auto replaced",
-  "library": "false",
+  "library": "true",
   "authors": [
     {
         "name": "theripper93",
