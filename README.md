@@ -46,9 +46,7 @@ Blue: Minor
 # How to include changelogs in your module:
 Including a changelog is very simple, just call the `libChangelogs.register()` in the `libChangelogsReady` hook
 
-`
-`
-`
+```js
 /**
  * @param {string} moduleId The package identifier, i.e. the 'id' field in your module/system/world's manifest.json
  * @param {string} html The html to be inserted into the changelog module
@@ -67,6 +65,4 @@ Including a changelog is very simple, just call the `libChangelogs.register()` i
  * **/
 
     libChangelogs.register(moduleId, html, warnLevel="minor")
-`js
-`
-`
+```
