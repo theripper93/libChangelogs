@@ -44,7 +44,7 @@ Yellow: Major
 Blue: Minor
 
 # How to include changelogs in your module:
-Including a changelog is very simple, just call the `libChangelogs.register()` in the `libChangelogsReady` hook
+Including a changelog is very simple, just call the `libChangelogs.register()` in the `libChangelogsReady` hook. Since changelogs is registered on a custom hook you don't need to check if the module is active before you register your changelog
 
 ```js
 /**
