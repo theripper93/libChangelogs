@@ -1,53 +1,76 @@
-![](https://img.shields.io/badge/Foundry-v0.7.9-informational)
-<!--- Downloads @ Latest Badge -->
-<!--- replace <user>/<repo> with your username/repository -->
-<!--- ![Latest Release Download Count](https://img.shields.io/github/downloads/<user>/<repo>/latest/module.zip) -->
+# CHANGELOGS
+## Show changelogs of module in a non intrusive way.
 
-<!--- Forge Bazaar Install % Badge -->
-<!--- replace <your-module-name> with the `name` in your manifest -->
-<!--- ![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2F<your-module-name>&colorB=4aa94a) -->
+# Why?
 
+Module developers have no way of issuing changelogs or important warnings in a clean and streamlined way. This module adds a non intrusive way for users to get important informations.
 
-# How to use this Template to create a versioned Release
+# How does it work?
 
-1. Open your repository's releases page.
+You can chose the level of importance you want to see
 
-![Where to click to open repository releases.](https://user-images.githubusercontent.com/7644614/93409301-9fd25080-f864-11ea-9e0c-bdd09e4418e4.png)
+![image](https://user-images.githubusercontent.com/1346839/127586817-23289481-6cb4-4fcd-a50f-d9fcdaa14fd5.png)
 
-2. Click "Draft a new release"
+With four options
 
-![Draft a new release button.](https://user-images.githubusercontent.com/7644614/93409364-c1333c80-f864-11ea-89f1-abfcb18a8d9f.png)
+![image](https://user-images.githubusercontent.com/1346839/127586846-b7b603a2-8561-47a4-990a-9507a0a76daf.png)
 
-3. Fill out the release version as the tag name.
+Once you close the window you will not get notified again for the current version of the module
 
-## <span color="red">Do not prefix your tag name with a `v`.</span>
+![image](https://user-images.githubusercontent.com/1346839/127587189-7c311c30-8db9-4f1f-8a7d-b2702690a843.png)
 
-If you want to add details at this stage you can, or you can always come back later and edit them.
+If you accidentaly closed a popup and want to check all your changelogs just click the show all changelogs button in Changelogs settings
 
-![Release Creation Form](https://user-images.githubusercontent.com/7644614/93409543-225b1000-f865-11ea-9a19-f1906a724421.png)
-
-4. Hit submit.
-
-5. Wait a few minutes.
-
-A Github Action will run to populate the `module.json` and `module.zip` with the correct urls that you can then use to distribute this release. You can check on its status in the "Actions" tab.
-
-![Actions Tab](https://user-images.githubusercontent.com/7644614/93409820-c1800780-f865-11ea-8c6b-c3792e35e0c8.png)
-
-6. Grab the module.json url from the release's details page.
-
-![image](https://user-images.githubusercontent.com/7644614/93409960-10c63800-f866-11ea-83f6-270cc5d10b71.png)
-
-This `module.json` will only ever point at this release's `module.zip`, making it useful for sharing a specific version for compatibility purposes.
-
-7. You can use the url `https://github.com/<user>/<repo>/releases/latest/download/module.json` to refer to the manifest.
-
-This is the url you want to use to install the module typically, as it will get updated automatically.
+![image](https://user-images.githubusercontent.com/1346839/127587526-a54346b2-aa79-43aa-b1dc-bcba1fe22252.png)
 
 
-# FoundryVTT Module
+## All
+Any changelog and warning will be shown
 
-Does something, probably
+## Major
+Only updates with new features (and above) will be shown
 
-## Changelog
+## Breaking
+Only updates with breaking changes (and above) will be shown
 
+## Critical
+Only for emergencies, this is for module developers to issue critical messages
+
+## Color Codes
+
+Purple: Critical
+Red: Breaking
+Yellow: Major
+Blue: Minor
+
+# How to include changelogs in your module:
+Including a changelog is very simple, just call the `libChangelogs.register()` in the `libChangelogsReady` hook. Since changelogs is registered on a custom hook you don't need to check if the module is active before you register your changelog
+
+```js
+/**
+ * @param {string} moduleId The package identifier, i.e. the 'id' field in your module/system/world's manifest.json
+ * @param {string} html The html to be inserted into the changelog
+ * @param {string} warnLevel The level of warning to be displayed.
+ * 
+ *   The possible types are:
+ * 
+ * - critical: 
+ *         Only use for emergencies, something went wrong or the update requires immidiate action from the user. This warning level CANNOT be disable by the user
+ * - breaking:
+ *         A breaking change that requires action from the user but will not cause issues if left unattended (eg. a new feature that requires some manual configuration changes).
+ * - major:
+ *         One or more Major features have been added to the module, let the user know what they do or link to other resources.
+ * - minor:
+ *         Minor bugfixes or changes that won't impact the user experience with your module (this is the default option).
+ * **/
+
+    libChangelogs.register(moduleId, html, warnLevel="minor")
+```
+
+# Example
+
+```js
+Hooks.once('libChangelogsReady', function() {
+    libChangelogs.register("yourmoduleid","THIS UPDATE BREAKS EVERYTHING","critical")
+})
+```
