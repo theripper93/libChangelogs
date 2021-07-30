@@ -15,6 +15,7 @@ class Changelogs extends FormApplication{
             "minor" : {},
         }
         this.readChangelogs = game.settings.get("lib-changelogs", "changelogs");
+        this.markdownCoverter = new showdown.Converter()
     }
 
     static get defaultOptions() {
@@ -24,6 +25,7 @@ class Changelogs extends FormApplication{
         options.width = 400
         options.height = 400;
         options.title = "Changelogs"
+        options.resizable = true
         return options;
     }
 
@@ -50,7 +52,7 @@ class Changelogs extends FormApplication{
 
 /**
  * @param {string} moduleId The package identifier, i.e. the 'id' field in your module/system/world's manifest.json
- * @param {string} html The html to be inserted into the changelog
+ * @param {string} markdown The text in markdown language to be inserted into the changelog
  * @param {string} warnLevel The level of warning to be displayed.
  * 
  *   The possible types are:
@@ -65,14 +67,14 @@ class Changelogs extends FormApplication{
  *         Minor bugfixes or changes that won't impact the user experience with your module (this is the default option).
  * **/
 
-    register(moduleId, html, warnLevel="minor") {
+    register(moduleId, markdown, warnLevel="minor") {
         if(!game.modules.get(moduleId)?.active) return;
 
         if(!this.allChangelogs[warnLevel]) return;
         this.allChangelogs[warnLevel][moduleId] = {
             moduleName : game.modules.get(moduleId).data.title,
             version : game.modules.get(moduleId).data.version,
-            html : html,
+            html : this.markdownCoverter.makeHtml(markdown),
         }
     }
 
@@ -158,10 +160,6 @@ Hooks.once('init', function() {
     Hooks.callAll('libChangelogsReady');
 
 });
-
-Hooks.once('libChangelogsReady', function() {
-
-})
 
 Hooks.once('ready', function() {
     if(!game.user.isGM) return

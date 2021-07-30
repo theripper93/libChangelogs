@@ -1,0 +1,11 @@
+Hooks.once('libChangelogsReady', function() {
+libChangelogs.register("lib-changelogs", "Thisdfgdg dg rdgrdgdrggdgdddddddddddddddddddddd drgdgrdgdrgdr       dergdrgdgdrg<br> is<br> a <br>changelog", "critical");
+libChangelogs.register("levels", `# CHANGELOGS
+## Show changelogs of modules in a non intrusive way.
+
+# Why?
+
+Module developers have no way of issuing changelogs or important warnings in a clean and streamlined way. This module adds a non intrusive way for users to get important informations.`);
+libChangelogs.register("blastzone", "This<br> is<br> a <br>changelog", "major");
+libChangelogs.register("betterroofs", "This<br> is<br> a <br>changelog", "breaking");
+})

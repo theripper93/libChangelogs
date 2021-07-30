@@ -19,7 +19,8 @@
     }
 ],
 "scripts": [
-    "./scripts/changelogs.js"
+    "./scripts/changelogs.js",
+    "./scripts/showdown.js"
 ],
 "styles": [
     "./styles/changelogs.css"
