@@ -1,5 +1,5 @@
 # CHANGELOGS
-## Show changelogs of module in a non intrusive way.
+## Show changelogs of modules in a non intrusive way.
 
 # Why?
 
