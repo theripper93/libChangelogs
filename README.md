@@ -42,3 +42,31 @@ Purple: Critical
 Red: Breaking
 Yellow: Major
 Blue: Minor
+
+# How to include changelogs in your module:
+Including a changelog is very simple, just call the `libChangelogs.register()` in the `libChangelogsReady` hook
+
+`
+`
+`
+/**
+ * @param {string} moduleId The package identifier, i.e. the 'id' field in your module/system/world's manifest.json
+ * @param {string} html The html to be inserted into the changelog module
+ * @param {string} warnLevel The level of warning to be displayed.
+ * 
+ *   The possible types are:
+ * 
+ * - critical: 
+ *         Only use for emergencies, something went wrong or the update requires immidiate action from the user.
+ * - breaking:
+ *         A breaking change that requires action from the user but will not cause issues if left unattended (eg. a new feature that requires some manual configuration changes).
+ * - major:
+ *         One or more Major features have been added to the module, let the user know what they do or link to other resources.
+ * - minor:
+ *         Minor bugfixes or changes that won't impact the user experience with your module (this is the default option).
+ * **/
+
+    libChangelogs.register(moduleId, html, warnLevel="minor")
+`js
+`
+`
