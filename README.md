@@ -75,6 +75,9 @@ Hooks.once('libChangelogsReady', function() {
 })
 ```
 
+![image](https://user-images.githubusercontent.com/1346839/127656111-fdfc19ce-b98e-4bfd-ae3b-ad7e85430b41.png)
+
+
 ## Libraries
 
 This module uses https://github.com/showdownjs/showdown for markdown parsing
