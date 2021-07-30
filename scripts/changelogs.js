@@ -48,6 +48,23 @@ class Changelogs extends FormApplication{
     _activateCoreListeners(html) {
     }
 
+/**
+ * @param {string} moduleId The package identifier, i.e. the 'id' field in your module/system/world's manifest.json
+ * @param {string} html The html to be inserted into the changelog
+ * @param {string} warnLevel The level of warning to be displayed.
+ * 
+ *   The possible types are:
+ * 
+ * - critical: 
+ *         Only use for emergencies, something went wrong or the update requires immidiate action from the user.
+ * - breaking:
+ *         A breaking change that requires action from the user but will not cause issues if left unattended (eg. a new feature that requires some manual configuration changes).
+ * - major:
+ *         One or more Major features have been added to the module, let the user know what they do or link to other resources.
+ * - minor:
+ *         Minor bugfixes or changes that won't impact the user experience with your module (this is the default option).
+ * **/
+
     register(moduleId, html, warnLevel="minor") {
         if(!game.modules.get(moduleId)?.active) return;
 
@@ -143,13 +160,7 @@ Hooks.once('init', function() {
 });
 
 Hooks.once('libChangelogsReady', function() {
-    libChangelogs.register("levels","TEEST","critical")
-    libChangelogs.register("betterroofs","TEEST","critical")
-    libChangelogs.register("combatbooster","TEEST","minor")
-    libChangelogs.register("blastzone","TEEST","major")
-    libChangelogs.register("fxmaster","TEEST","breaking")
-    libChangelogs.register("levels","TEEST","critical")
-    libChangelogs.register("levels","TEEST","critical")
+
 })
 
 Hooks.once('ready', function() {
@@ -169,7 +180,7 @@ Hooks.on("renderSettingsConfig", function(form,html) {
     </button>
     
 </div>`
-    html.find('input[name="lib-changelogs.warnLevel"]').closest(".form-group").before(changelogsBtn);
+    html.find('select[name="lib-changelogs.warnLevel"]').closest(".form-group").before(changelogsBtn);
 
     html.on("click", "#lib-changelogs-menu",(event) => {
         event.preventDefault();
