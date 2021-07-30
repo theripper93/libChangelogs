@@ -35,9 +35,9 @@ class Changelogs extends FormApplication{
 
     activateListeners(html) {
         super.activateListeners(html);
-        html.on("click", "#toggle-btn",(event) => {
+        html.on("click", ".chl-module-header",(event) => {
             let $currTarget = $(event.currentTarget);
-            $currTarget.toggleClass("fa-caret-right fa-caret-down");
+            $currTarget.find("#toggle-btn").toggleClass("fa-caret-right fa-caret-down");
             $currTarget.closest(".chl-module-critical").find(".chl-module-content").toggleClass("hidden");
             $currTarget.closest(".chl-module-breaking").find(".chl-module-content").toggleClass("hidden");
             $currTarget.closest(".chl-module-major").find(".chl-module-content").toggleClass("hidden");
