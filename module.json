@@ -2,7 +2,7 @@
   "name": "lib-changelogs",
   "title": "Changelogs",
   "description": "Show changelogs of module in a non intrusive way.",
-  "version": "This is auto replaced",
+  "version": "0.1",
   "library": "true",
   "authors": [
     {
