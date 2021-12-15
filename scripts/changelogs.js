@@ -258,7 +258,7 @@ Hooks.on("renderSidebarTab",(settings) => {
     const conflictNumber = Object.values(libChangelogs.allConflicts).reduce((acc,cur) => acc + Object.values(cur).length,0)
     const buttonText = conflictNumber > 0 ? `${game.i18n.localize("lib-changelogs.settings.showConflicts")} ${conflictNumber}` : game.i18n.localize("lib-changelogs.dialog.conflictcn");
     const button = `<button id="lib-changelogs-button" ${conflictNumber > 0 ? 'style="background:#ff7e7e"' : ""} >
-    <i class="fas fa-hands-helping"></i> ${buttonText}
+    <i class="fas fa-exclamation-triangle"></i> ${buttonText}
 </button>`
     html.find(`#settings-documentation`).first().prepend(button)
     html.on("click", "#lib-changelogs-button",(event) => {
