@@ -81,6 +81,41 @@ Hooks.once('libChangelogsReady', function() {
 ![image](https://user-images.githubusercontent.com/1346839/127656111-fdfc19ce-b98e-4bfd-ae3b-ad7e85430b41.png)
 
 
+# How to include conflicts in your module:
+Including a conflict is very simple, just call the `libChangelogs.registerConflict()` in the `libChangelogsReady` hook. Since changelogs is registered on a custom hook you don't need to check if the module is active before you register your conflict nor add it as a dependency. You can register multiple conflicts with separate `libChangelogs.registerConflict()` calls.
+
+```js
+/**
+ * @param {string} moduleId The package identifier, i.e. the 'id' field in your module/system/world's manifest.json
+ * @param {string} conflictingModule The package identifier, i.e. the 'id' field of the conflicting module.
+ * @param {string} markdown The text in markdown language to be displayed for the conflict.
+ * @param {string} warnLevel The level of warning to be displayed.
+ * 
+ *   The possible types are:
+ * 
+ * - critical: 
+ *         Using both modules together will make foundry unusable.
+ * - breaking:
+ *         User will experience issues that can make foundry unusable under specific circumstances if the conflicting module is enabled.
+ * - major:
+ *         Features will not work as expected if the conflicting module is enabled.
+ * - minor:
+ *         User will experience minor issues, such as UI bugs or minor features not working - the user might need to disable some features from your or the conflicting module for things to work correctly.
+ * **/
+
+    libChangelogs.registerConflict(moduleId, conflictingModule, markdown, warnLevel)
+   
+```
+
+# Example
+
+```js
+Hooks.once('libChangelogsReady', function() {
+    libChangelogs.registerConflict("yourmoduleid", "conflictingmoduleid","Enabling both modules will cause foundry to not function","critical")
+})
+```
+
+
 ## Libraries
 
 This module uses https://github.com/showdownjs/showdown for markdown parsing
