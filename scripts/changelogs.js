@@ -114,7 +114,7 @@ class Changelogs extends FormApplication{
  * **/
 
     registerConflict(moduleId, conflictingModule, markdown, warnLevel, ){
-        if(!game.modules.get(moduleId)?.active) return;
+        if(!game.modules.get(moduleId)?.active || !game.modules.get(conflictingModule)?.active) return;
         if(!this.allConflicts[warnLevel]) return;
         this.allConflicts[warnLevel][moduleId] = {
             moduleName : game.modules.get(moduleId).data.title + " - " + game.modules.get(moduleId).data.version + " / " + game.modules.get(conflictingModule).data.title + " - " + game.modules.get(conflictingModule).data.version,
@@ -170,7 +170,7 @@ class Changelogs extends FormApplication{
             this.changelogs = this.allChangelogs;
             this.conflicts = this.allConflicts;
         }
-        if(!this.isNotEmpty) return;
+        if(!this.isNotEmpty) return ui.notifications.info(game.i18n.localize("CHANGELOGS.empty"));
         super.render(...args);
     }
 
@@ -226,6 +226,10 @@ Hooks.once('ready', function() {
     libChangelogs.render(true,{},
         game.settings.get("lib-changelogs", "alwaysShow") ? "all" : ""
         );
+
+
+        //ui.sidebar.render()
+
 });
 
 
@@ -246,3 +250,19 @@ Hooks.on("renderSettingsConfig", function(form,html) {
     })
 
 } )
+
+Hooks.on("renderSidebarTab",(settings) => {
+    if(!game.user.isGM || settings.id != "settings") return
+    const html = settings.element
+    if(html.find("#sfButton").length !== 0) return
+    const conflictNumber = Object.values(libChangelogs.allConflicts).reduce((acc,cur) => acc + Object.values(cur).length,0)
+    const buttonText = conflictNumber > 0 ? `${game.i18n.localize("lib-changelogs.settings.showConflicts")} ${conflictNumber}` : game.i18n.localize("lib-changelogs.dialog.conflictcn");
+    const button = `<button id="lib-changelogs-button" ${conflictNumber > 0 ? 'style="background:#ff7e7e"' : ""} >
+    <i class="fas fa-hands-helping"></i> ${buttonText}
+</button>`
+    html.find(`#settings-documentation`).first().prepend(button)
+    html.on("click", "#lib-changelogs-button",(event) => {
+        event.preventDefault();
+        libChangelogs.render(true,{},"all");
+    })
+  });

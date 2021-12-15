@@ -9,5 +9,8 @@
     "lib-changelogs.settings.warnLevel.critical": "Critical",
     "lib-changelogs.settings.showAll": "Show All Changelogs & Conflicts",
     "lib-changelogs.dialog.conflict": "Conflicts",
-    "lib-changelogs.dialog.changelog": "Changelogs"
+    "lib-changelogs.dialog.changelog": "Changelogs",
+    "lib-changelogs.dialog.conflictcn": "Changelogs & Conflicts",
+    "lib-changelogs.settings.showConflicts": "Conflicts Detected:",
+    "CHANGELOGS.empty": "No Changelogs or Conflicts to show."
 }
