@@ -170,7 +170,7 @@ class Changelogs extends FormApplication{
             this.changelogs = this.allChangelogs;
             this.conflicts = this.allConflicts;
         }
-        if(!this.isNotEmpty) return ui.notifications.info(game.i18n.localize("CHANGELOGS.empty"));
+        if(!this.isNotEmpty) return args[3] ? ui.notifications.info(game.i18n.localize("CHANGELOGS.empty")) : undefined;
         super.render(...args);
     }
 
@@ -246,7 +246,7 @@ Hooks.on("renderSettingsConfig", function(form,html) {
 
     html.on("click", "#lib-changelogs-menu",(event) => {
         event.preventDefault();
-        libChangelogs.render(true,{},"all");
+        libChangelogs.render(true,{},"all",true);
     })
 
 } )
@@ -258,11 +258,11 @@ Hooks.on("renderSidebarTab",(settings) => {
     const conflictNumber = Object.values(libChangelogs.allConflicts).reduce((acc,cur) => acc + Object.values(cur).length,0)
     const buttonText = conflictNumber > 0 ? `${game.i18n.localize("lib-changelogs.settings.showConflicts")} ${conflictNumber}` : game.i18n.localize("lib-changelogs.dialog.conflictcn");
     const button = `<button id="lib-changelogs-button" ${conflictNumber > 0 ? 'style="background:#ff7e7e"' : ""} >
-    <i class="fas fa-exclamation-triangle"></i> ${buttonText}
+    <i class="${conflictNumber > 0 ? "fas fa-exclamation-triangle" : "fas fa-clipboard-check"}"></i> ${buttonText}
 </button>`
     html.find(`#settings-documentation`).first().prepend(button)
     html.on("click", "#lib-changelogs-button",(event) => {
         event.preventDefault();
-        libChangelogs.render(true,{},"all");
+        libChangelogs.render(true,{},"all", true);
     })
   });
