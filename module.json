@@ -1,7 +1,7 @@
 {
   "name": "lib-changelogs",
-  "title": "Changelogs",
-  "description": "Show changelogs of module in a non intrusive way.",
+  "title": "Changelogs & Conflicts",
+  "description": "Show changelogs & conflicts of module in a non intrusive way.",
   "version": "0.1",
   "library": "true",
   "authors": [

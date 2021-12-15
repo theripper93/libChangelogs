@@ -7,5 +7,7 @@
     "lib-changelogs.settings.warnLevel.major": "Major",
     "lib-changelogs.settings.warnLevel.breaking": "Breaking",
     "lib-changelogs.settings.warnLevel.critical": "Critical",
-    "lib-changelogs.settings.showAll": "Show All Changelogs"
+    "lib-changelogs.settings.showAll": "Show All Changelogs & Conflicts",
+    "lib-changelogs.dialog.conflict": "Conflicts",
+    "lib-changelogs.dialog.changelog": "Changelogs"
 }

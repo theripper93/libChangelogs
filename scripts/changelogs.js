@@ -8,7 +8,19 @@ class Changelogs extends FormApplication{
             "major" : {},
             "minor" : {},
         }
+        this.allConflicts = {
+            "critical" : {},
+            "breaking" : {},
+            "major" : {},
+            "minor" : {},
+        }
         this.changelogs = {
+            "critical" : {},
+            "breaking" : {},
+            "major" : {},
+            "minor" : {},
+        }
+        this.conflicts = {
             "critical" : {},
             "breaking" : {},
             "major" : {},
@@ -32,6 +44,11 @@ class Changelogs extends FormApplication{
     getData() {
         const data = super.getData();
         data.changelogs = this.changelogs;
+        data.conflicts = this.conflicts;
+        data.titles = {
+            changelogs:  game.i18n.localize("lib-changelogs.dialog.changelog"),
+            conflicts: game.i18n.localize("lib-changelogs.dialog.conflict"),
+        }
         return data;
     }
 
@@ -78,6 +95,36 @@ class Changelogs extends FormApplication{
         }
     }
 
+/**
+ * @param {string} moduleId The package identifier, i.e. the 'id' field in your module/system/world's manifest.json
+ * @param {string} conflictingModule The package identifier, i.e. the 'id' field of the conflicting module.
+ * @param {string} markdown The text in markdown language to be displayed for the conflict.
+ * @param {string} warnLevel The level of warning to be displayed.
+ * 
+ *   The possible types are:
+ * 
+ * - critical: 
+ *         Using both modules together will make foundry unusable.
+ * - breaking:
+ *         User will experience issues that can make foundry unusable under specific circumstances if the conflicting module is enabled.
+ * - major:
+ *         Features will not work as expected if the conflicting module is enabled.
+ * - minor:
+ *         User will experience minor issues, such as UI bugs or minor features not working - the user might need to disable some features from your or the conflicting module for things to work correctly.
+ * **/
+
+    registerConflict(moduleId, conflictingModule, markdown, warnLevel, ){
+        if(!game.modules.get(moduleId)?.active) return;
+        if(!this.allConflicts[warnLevel]) return;
+        this.allConflicts[warnLevel][moduleId] = {
+            moduleName : game.modules.get(moduleId).data.title + " - " + game.modules.get(moduleId).data.version + " / " + game.modules.get(conflictingModule).data.title + " - " + game.modules.get(conflictingModule).data.version,
+            version : game.modules.get(moduleId).data.version,
+            html : this.markdownCoverter.makeHtml(markdown),
+            conflict : true,
+            conflictingModule : conflictingModule
+        }
+    }
+
     filterAndSave(){
         let warnLevel = game.settings.get("lib-changelogs", "warnLevel")
         let settingsToSave = this.readChangelogs;
@@ -85,6 +132,14 @@ class Changelogs extends FormApplication{
             for(let [moduleId, moduleData] of Object.entries(value)){
                 if(this.readChangelogs[moduleId]!=moduleData.version){
                     if(this.warnLevel(key,warnLevel))this.changelogs[key][moduleId] = moduleData;
+                    settingsToSave[moduleId] = moduleData.version;
+                }
+            }
+        }
+        for(let [key,value] of Object.entries(this.allConflicts)){
+            for(let [moduleId, moduleData] of Object.entries(value)){
+                if(this.readChangelogs[moduleId]!=moduleData.version){
+                    if(this.warnLevel(key,warnLevel) && game.modules.get(moduleData.conflictingModule)?.active)this.conflicts[key][moduleId] = moduleData;
                     settingsToSave[moduleId] = moduleData.version;
                 }
             }
@@ -104,12 +159,16 @@ class Changelogs extends FormApplication{
         for(let [key,value] of Object.entries(this.changelogs)){
             if(Object.entries(value).length>0) return true;
         }
+        for(let [key,value] of Object.entries(this.conflicts)){
+            if(Object.entries(value).length>0) return true;
+        }
         return false;
     }
 
     render(...args) {
         if(args[2]=="all"){
             this.changelogs = this.allChangelogs;
+            this.conflicts = this.allConflicts;
         }
         if(!this.isNotEmpty) return;
         super.render(...args);

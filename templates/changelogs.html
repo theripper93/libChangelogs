@@ -1,4 +1,66 @@
 <div class="changelogs">
+<h2>{{titles.conflicts}}</h2>
+    {{#each conflicts.critical}}
+    <div class="chl-module-critical" data-name="{{moduleName}}">
+        <h2 class="chl-module-header">
+            <span class="chl-toggle-icon">
+                <i class="fa fa-caret-right" id="toggle-btn"></i>
+            </span>
+            {{moduleName}}
+        </h2>
+        <div class="chl-module-content hidden">
+            {{{html}}}
+        </div> 
+    </div>
+    {{/each}}
+
+    {{#each conflicts.breaking}}
+    <div class="chl-module-breaking" data-name="{{moduleName}}">
+        <h2 class="chl-module-header">
+            <span class="chl-toggle-icon">
+                <i class="fa fa-caret-right" id="toggle-btn"></i>
+            </span>
+            {{moduleName}}
+        </h2>
+        <div class="chl-module-content hidden">
+            {{{html}}}
+        </div> 
+    </div>
+    {{/each}}
+
+    {{#each conflicts.major}}
+    <div class="chl-module-major" data-name="{{moduleName}}">
+        <h2 class="chl-module-header">
+            <span class="chl-toggle-icon">
+                <i class="fa fa-caret-right" id="toggle-btn"></i>
+            </span>
+            {{moduleName}}
+        </h2>
+        <div class="chl-module-content hidden">
+            {{{html}}}
+        </div> 
+    </div>
+    {{/each}}
+
+    {{#each conflicts.minor}}
+    <div class="chl-module-minor" data-name="{{moduleName}}">
+        <h2 class="chl-module-header">
+            <span class="chl-toggle-icon">
+                <i class="fa fa-caret-right" id="toggle-btn"></i>
+            </span>
+            {{moduleName}}
+        </h2>
+        <div class="chl-module-content hidden">
+            {{{html}}}
+        </div> 
+    </div>
+    {{/each}}
+
+
+
+    <h2>{{titles.changelogs}}</h2>
+
+
     {{#each changelogs.critical}}
     <div class="chl-module-critical" data-name="{{moduleName}}">
         <h2 class="chl-module-header">
