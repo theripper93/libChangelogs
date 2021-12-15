@@ -1,4 +1,4 @@
-# CHANGELOGS
+# CHANGELOGS & CONFLICTS
 ## Before opening an issue read [THIS](https://github.com/theripper93/Levels/blob/v9/ISSUES.md)
 ## Show changelogs of modules in a non intrusive way.
 
