@@ -1,4 +1,5 @@
 # CHANGELOGS
+## Before opening an issue read [THIS](https://github.com/theripper93/Levels/blob/v9/ISSUES.md)
 ## Show changelogs of modules in a non intrusive way.
 
 ![Latest Release Download Count](https://img.shields.io/github/downloads/theripper93/libChangelogs/latest/module.zip?color=2b82fc&label=DOWNLOADS&style=for-the-badge) [![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2FlibChangelogs&colorB=03ff1c&style=for-the-badge)](https://forge-vtt.com/bazaar#package=libChangelogs) ![Foundry Core Compatible Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Ftheripper93%2FlibChangelogs%2Fmain%2Fmodule.json&label=Foundry%20Version&query=$.compatibleCoreVersion&colorB=orange&style=for-the-badge) [![alt-text](https://img.shields.io/badge/-Patreon-%23ff424d?style=for-the-badge)](https://www.patreon.com/theripper93) [![alt-text](https://img.shields.io/badge/-Discord-%235662f6?style=for-the-badge)](https://discord.gg/F53gBjR97G)
@@ -78,6 +79,41 @@ Hooks.once('libChangelogsReady', function() {
 ```
 
 ![image](https://user-images.githubusercontent.com/1346839/127656111-fdfc19ce-b98e-4bfd-ae3b-ad7e85430b41.png)
+
+
+# How to include conflicts in your module:
+Including a conflict is very simple, just call the `libChangelogs.registerConflict()` in the `libChangelogsReady` hook. Since changelogs is registered on a custom hook you don't need to check if the module is active before you register your conflict nor add it as a dependency. You can register multiple conflicts with separate `libChangelogs.registerConflict()` calls.
+
+```js
+/**
+ * @param {string} moduleId The package identifier, i.e. the 'id' field in your module/system/world's manifest.json
+ * @param {string} conflictingModule The package identifier, i.e. the 'id' field of the conflicting module.
+ * @param {string} markdown The text in markdown language to be displayed for the conflict.
+ * @param {string} warnLevel The level of warning to be displayed.
+ * 
+ *   The possible types are:
+ * 
+ * - critical: 
+ *         Using both modules together will make foundry unusable.
+ * - breaking:
+ *         User will experience issues that can make foundry unusable under specific circumstances if the conflicting module is enabled.
+ * - major:
+ *         Features will not work as expected if the conflicting module is enabled.
+ * - minor:
+ *         User will experience minor issues, such as UI bugs or minor features not working - the user might need to disable some features from your or the conflicting module for things to work correctly.
+ * **/
+
+    libChangelogs.registerConflict(moduleId, conflictingModule, markdown, warnLevel)
+   
+```
+
+# Example
+
+```js
+Hooks.once('libChangelogsReady', function() {
+    libChangelogs.registerConflict("yourmoduleid", "conflictingmoduleid","Enabling both modules will cause foundry to not function","critical")
+})
+```
 
 
 ## Libraries
