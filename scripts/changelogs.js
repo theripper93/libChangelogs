@@ -216,24 +216,22 @@ Hooks.once('init', function() {
 
       libChangelogs = new Changelogs();
 
-    Hooks.callAll('libChangelogsReady');
-
 });
 
 Hooks.once('ready', function() {
     if(!game.user.isGM) return
+    Hooks.callAll('libChangelogsReady');
     libChangelogs.filterAndSave();
     libChangelogs.render(true,{},
         game.settings.get("lib-changelogs", "alwaysShow") ? "all" : ""
         );
-
-
-        //ui.sidebar.render()
+    ui.sidebar.tabs.settings.render()
 
 });
 
 
 Hooks.on("renderSettingsConfig", function(form,html) {
+
     let changelogsBtn = `<div class="form-group submenu">
     <label></label>
     <button type="button" id="lib-changelogs-menu">
@@ -248,7 +246,6 @@ Hooks.on("renderSettingsConfig", function(form,html) {
         event.preventDefault();
         libChangelogs.render(true,{},"all",true);
     })
-
 } )
 
 Hooks.on("renderSidebarTab",(settings) => {
