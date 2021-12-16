@@ -6,7 +6,7 @@
 
 # Why?
 
-Module developers have no way of issuing changelogs or important warnings in a clean and streamlined way. This module adds a non intrusive way for users to get important informations.
+Module developers have no way of issuing changelogs or important warnings in a clean and streamlined way. This module adds a non intrusive way for users to get important informations. What is more, a lot of times users need to rely on discord to know if modules conflict with each other. Changelogs & Conflicts will also warn users of potential conflicts and display the suggested curse of action provided by the developer (for example, you might just need to disable a setting in one of the modules for things to work).
 
 # How does it work?
 
@@ -25,6 +25,11 @@ Once you close the window you will not get notified again for the current versio
 If you accidentaly closed a popup and want to check all your changelogs just click the show all changelogs button in Changelogs settings
 
 ![image](https://user-images.githubusercontent.com/1346839/127587526-a54346b2-aa79-43aa-b1dc-bcba1fe22252.png)
+
+You will be reminded of conflicts here as well
+
+![image](https://user-images.githubusercontent.com/1346839/146197946-820533a1-d1cc-42f8-9494-d4e50d46f866.png)
+
 
 
 ## All
