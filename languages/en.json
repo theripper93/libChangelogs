@@ -12,5 +12,7 @@
     "lib-changelogs.dialog.changelog": "Changelogs",
     "lib-changelogs.dialog.conflictcn": "Changelogs & Conflicts",
     "lib-changelogs.settings.showConflicts": "Conflicts Detected:",
-    "CHANGELOGS.empty": "No Changelogs or Conflicts to show."
+    "CHANGELOGS.empty": "No Changelogs or Conflicts to show.",
+    "lib-changelogs.settings.communityConflicts.name": "Show Community Conflicts",
+    "lib-changelogs.settings.communityConflicts.hint": "Show conflicts provided by the community"
 }

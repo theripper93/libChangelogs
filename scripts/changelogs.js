@@ -205,6 +205,15 @@ Hooks.once('init', function() {
         default: "all",
       });
 
+      game.settings.register("lib-changelogs", "communityConflicts", {
+        name: game.i18n.localize("lib-changelogs.settings.communityConflicts.name"),
+        hint: game.i18n.localize("lib-changelogs.settings.communityConflicts.hint"),
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: true,
+      });
+
       game.settings.register("lib-changelogs", "alwaysShow", {
         name: game.i18n.localize("lib-changelogs.settings.alwaysShow.name"),
         hint: game.i18n.localize("lib-changelogs.settings.alwaysShow.hint"),
