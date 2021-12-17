@@ -20,7 +20,8 @@
 ],
 "scripts": [
     "./scripts/changelogs.js",
-    "./scripts/showdown.js"
+    "./scripts/showdown.js",
+    "./scripts/communityConflicts.js"
 ],
 "styles": [
     "./styles/changelogs.css"
