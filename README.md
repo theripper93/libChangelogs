@@ -51,6 +51,10 @@ Red: Breaking
 Yellow: Major
 Blue: Minor
 
+# Community Conflicts
+
+If you are aware of a conflict you can send a Pull Request and add that conflict registration to `communityConflicts.js` following the instructions provided below!
+
 # How to include changelogs in your module:
 Including a changelog is very simple, just call the `libChangelogs.register()` in the `libChangelogsReady` hook. Since changelogs is registered on a custom hook you don't need to check if the module is active before you register your changelog nor add it as a dependency
 
