@@ -46,10 +46,10 @@ Only for emergencies, this is for module developers to issue critical messages
 
 ## Color Codes
 
-Purple: Critical
-Red: Breaking
-Yellow: Major
-Blue: Minor
+* Purple: Critical
+* Red: Breaking
+* Yellow: Major
+* Blue: Minor
 
 # Community Conflicts
 
