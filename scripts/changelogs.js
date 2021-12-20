@@ -260,7 +260,6 @@ Hooks.on("renderSettingsConfig", function(form,html) {
 Hooks.on("renderSidebarTab",(settings) => {
     if(!game.user.isGM || settings.id != "settings") return
     const html = settings.element
-    if(html.find("#sfButton").length !== 0) return
     const conflictNumber = Object.values(libChangelogs.allConflicts).reduce((acc,cur) => acc + Object.values(cur).length,0)
     const buttonText = conflictNumber > 0 ? `${game.i18n.localize("lib-changelogs.settings.showConflicts")} ${conflictNumber}` : game.i18n.localize("lib-changelogs.dialog.conflictcn");
     const button = `<button id="lib-changelogs-button" ${conflictNumber > 0 ? 'style="background:#ff7e7e"' : ""} >

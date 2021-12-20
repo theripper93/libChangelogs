@@ -4,7 +4,7 @@
 
 .chl-module-content{
     text-shadow: none;
-    color: black;
+    color: inherit;
     overflow-y: scroll;
     font-size: 0.8rem;
     padding-bottom: 0.5rem;
@@ -15,6 +15,10 @@
     padding-right: 0.5rem;
 }
 
+.chl-module-header{
+    color: white;
+}
+
 .chl-module-content.hidden{
     max-height: 0px;
     padding-bottom: 0px;
@@ -22,7 +26,6 @@
 }
 
 .chl-module-minor{
-    color: rgb(255, 255, 255);
     text-shadow: 1px 1px 3px black;
     font-size:12px;
 }
@@ -34,7 +37,6 @@
 }
 
 .chl-module-major{
-    color: rgb(255, 255, 255);
     text-shadow: 1px 1px 3px black;
     font-size:12px;
 }
@@ -46,7 +48,6 @@
 }
 
 .chl-module-breaking{
-    color: rgb(255, 255, 255);
     text-shadow: 1px 1px 3px black;
     font-size:12px;
 }
@@ -58,7 +59,6 @@
 }
 
 .chl-module-critical{
-    color: rgb(255, 255, 255);
     text-shadow: 1px 1px 3px black;
     font-size:12px;
 }
