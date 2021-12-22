@@ -174,6 +174,21 @@ class Changelogs extends FormApplication{
         super.render(...args);
     }
 
+    static injectSidebar(shtml){
+    const html = shtml ?? ui.sidebar.tabs.settings.element
+    html.find("#lib-changelogs-button").remove();
+    const conflictNumber = Object.values(libChangelogs.allConflicts).reduce((acc,cur) => acc + Object.values(cur).length,0)
+    const buttonText = conflictNumber > 0 ? `${game.i18n.localize("lib-changelogs.settings.showConflicts")} ${conflictNumber}` : game.i18n.localize("lib-changelogs.dialog.conflictcn");
+    const button = `<button id="lib-changelogs-button" ${conflictNumber > 0 ? 'style="background:#ff7e7e"' : ""} >
+    <i class="${conflictNumber > 0 ? "fas fa-exclamation-triangle" : "fas fa-clipboard-check"}"></i> ${buttonText}
+</button>`
+    html.find(`#settings-documentation`).first().prepend(button)
+    html.on("click", "#lib-changelogs-button",(event) => {
+        event.preventDefault();
+        libChangelogs.render(true,{},"all", true);
+    })
+    }
+
 }
 
 let libChangelogs
@@ -234,7 +249,7 @@ Hooks.once('ready', function() {
     libChangelogs.render(true,{},
         game.settings.get("lib-changelogs", "alwaysShow") ? "all" : ""
         );
-    ui.sidebar.tabs.settings.render()
+    Changelogs.injectSidebar();
 
 });
 
@@ -258,16 +273,6 @@ Hooks.on("renderSettingsConfig", function(form,html) {
 } )
 
 Hooks.on("renderSidebarTab",(settings) => {
-    if(!game.user.isGM || settings.id != "settings") return
-    const html = settings.element
-    const conflictNumber = Object.values(libChangelogs.allConflicts).reduce((acc,cur) => acc + Object.values(cur).length,0)
-    const buttonText = conflictNumber > 0 ? `${game.i18n.localize("lib-changelogs.settings.showConflicts")} ${conflictNumber}` : game.i18n.localize("lib-changelogs.dialog.conflictcn");
-    const button = `<button id="lib-changelogs-button" ${conflictNumber > 0 ? 'style="background:#ff7e7e"' : ""} >
-    <i class="${conflictNumber > 0 ? "fas fa-exclamation-triangle" : "fas fa-clipboard-check"}"></i> ${buttonText}
-</button>`
-    html.find(`#settings-documentation`).first().prepend(button)
-    html.on("click", "#lib-changelogs-button",(event) => {
-        event.preventDefault();
-        libChangelogs.render(true,{},"all", true);
-    })
+    if(!game.user.isGM || !settings.id.includes("settings")) return
+    Changelogs.injectSidebar(settings.element);
   });
