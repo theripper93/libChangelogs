@@ -1,0 +1,18 @@
+{
+    "lib-changelogs.settings.alwaysShow.name": "デバッグ用：すべての変更ログを表示",
+    "lib-changelogs.settings.alwaysShow.hint": "設定を無視して、必ず変更ログを表示します。",
+    "lib-changelogs.settings.warnLevel.name": "変更ログフィルタ",
+    "lib-changelogs.settings.warnLevel.hint": "変更ログを重要性ごとにフィルタリングして、選択した重要度のものしか表示しなくなります。（業界用語なのであえてここは英語です）",
+    "lib-changelogs.settings.warnLevel.all": "すべて",
+    "lib-changelogs.settings.warnLevel.major": "Major",
+    "lib-changelogs.settings.warnLevel.breaking": "Breaking",
+    "lib-changelogs.settings.warnLevel.critical": "Critical",
+    "lib-changelogs.settings.showAll": "すべての変更ログ・競合を表示する",
+    "lib-changelogs.dialog.conflict": "競合",
+    "lib-changelogs.dialog.changelog": "変更ログ",
+    "lib-changelogs.dialog.conflictcn": "変更ログ＆競合",
+    "lib-changelogs.settings.showConflicts": "競合が発見されました：",
+    "CHANGELOGS.empty": "表示する変更ログ・競合は存在しません",
+    "lib-changelogs.settings.communityConflicts.name": "コミュニティ競合",
+    "lib-changelogs.settings.communityConflicts.hint": "コミュニティが作った競合リストから競合を参照します。"
+}
